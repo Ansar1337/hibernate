@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
+import java.util.List;
+
 @Log4j2
 public class Main {
     public static void main(String[] args) {
@@ -28,6 +30,14 @@ public class Main {
 //         basic SQL SELECT statement using HQL         
         Query query = session.createQuery("FROM User u where u.email like :text");
         query.setParameter("text", "%a%");
+        log.info(query);
+        
+//         getting first 10 values from the database      
+        Query query2 = session.createQuery("FROM User");
+        query2.setFirstResult(1);
+        query2.setMaxResults(10);
+        List<User> users = query2.getResultList();
+        log.info(users);
 
         session.close(); // close session; condition detached
 
