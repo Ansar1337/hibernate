@@ -4,6 +4,7 @@ import hibernate.entity.User;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 @Log4j2
 public class Main {
@@ -23,6 +24,10 @@ public class Main {
         user.setEmail("test1@gmail.com");
         user.setUsername("test");
         user.setPassword("111");
+        
+//         basic SQL SELECT statement using HQL         
+        Query query = session.createQuery("FROM User u where u.email like :text");
+        query.setParameter("text", "%a%");
 
         session.close(); // close session; condition detached
 
