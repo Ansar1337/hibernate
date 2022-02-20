@@ -38,6 +38,11 @@ public class Main {
         query2.setMaxResults(10);
         List<User> users = query2.getResultList();
         log.info(users);
+ //        aggregate functions
+        Query<Long> query = session.createQuery("SELECT " + "COUNT(u.id) FROM User u " + "WHERE email like :text");
+        query.setParameter("text", "%email%");
+        Long count = query.uniqueResult();
+        log.info(count);
 
         session.close(); // close session; condition detached
 
