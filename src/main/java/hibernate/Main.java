@@ -39,10 +39,16 @@ public class Main {
         List<User> users = query2.getResultList();
         log.info(users);
  //        aggregate functions
-        Query<Long> query = session.createQuery("SELECT " + "COUNT(u.id) FROM User u " + "WHERE email like :text");
-        query.setParameter("text", "%email%");
-        Long count = query.uniqueResult();
+        Query<Long> query3 = session.createQuery("SELECT " + "COUNT(u.id) FROM User u " + "WHERE email like :text");
+        query3.setParameter("text", "%email%");
+        Long count = query3.uniqueResult();
         log.info(count);
+        
+//         creating User object
+        Query<User> query4 = session.createQuery("SELECT new User(u.id,u.email) FROM User u WHERE id = :id");
+        query4.setParameter("id", 20030L);
+        User user = query4.uniqueResult();
+        log.info(user.getEmail());
 
         session.close(); // close session; condition detached
 
