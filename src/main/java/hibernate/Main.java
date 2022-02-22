@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.hibernate.query.NativeQuery;
 
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class Main {
         query2.setMaxResults(10);
         List<User> users = query2.getResultList();
         log.info(users);
+        
  //        aggregate functions
         Query<Long> query3 = session.createQuery("SELECT " + "COUNT(u.id) FROM User u " + "WHERE email like :text");
         query3.setParameter("text", "%email%");
@@ -49,6 +51,14 @@ public class Main {
         query4.setParameter("id", 20030L);
         User user = query4.uniqueResult();
         log.info(user.getEmail());
+        
+//         native SQL
+        String query = "select * from todolist.user_data";
+        NativeQuery sqlQuery = session.createSQLQuery(query);
+        sqlQuery.addEntity(User.class);
+        sqlQuery.setMaxResults(10);
+        List<User> list = sqlQuery.list();
+        log.info(list);
 
         session.close(); // close session; condition detached
 
