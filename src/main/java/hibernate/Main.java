@@ -27,6 +27,8 @@ public class Main {
         user.setEmail("test1@gmail.com");
         user.setUsername("test");
         user.setPassword("111");
+        session.save(user);
+        session.getTransaction().commit();
         
 //         basic SQL SELECT statement using HQL         
         Query query = session.createQuery("FROM User u where u.email like :text");
@@ -49,12 +51,12 @@ public class Main {
 //         creating User object
         Query<User> query4 = session.createQuery("SELECT new User(u.id,u.email) FROM User u WHERE id = :id");
         query4.setParameter("id", 20030L);
-        User user = query4.uniqueResult();
-        log.info(user.getEmail());
+        User user2 = query4.uniqueResult();
+        log.info(user2.getEmail());
         
 //         native SQL
-        String query = "select * from todolist.user_data";
-        NativeQuery sqlQuery = session.createSQLQuery(query);
+        String query5 = "select * from todolist.user_data";
+        NativeQuery sqlQuery = session.createSQLQuery(query5);
         sqlQuery.addEntity(User.class);
         sqlQuery.setMaxResults(10);
         List<User> list = sqlQuery.list();
