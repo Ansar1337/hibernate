@@ -61,6 +61,22 @@ public class Main {
         sqlQuery.setMaxResults(10);
         List<User> list = sqlQuery.list();
         log.info(list);
+        
+//         writing a more complex native sql query
+        NativeQuery<Object[]> myQuery = session.createNativeQuery("select " +
+                "       count(u.id), " +
+                "       substring(u.email, position('@' in u.email)+1, length(u.email)) as domainemail " +
+                "from todolist.user_data u  " +
+                "where u.email like '%@%' " +
+                "group by substring(u.email, position('@' in u.email)+1, length(u.email))");
+
+        log.info(myQuery.getResultList());
+
+        for (Object[] obj : myQuery.getResultList()) {
+            log.info(obj[0]);
+            log.info(obj[1]);
+            log.info("-----");
+        }
 
         session.close(); // close session; condition detached
 
