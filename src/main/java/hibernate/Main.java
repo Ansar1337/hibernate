@@ -77,6 +77,14 @@ public class Main {
             log.info(obj[1]);
             log.info("-----");
         }
+        
+//          extracting information about the user using built-in methods      
+        User temp = session.get(User.class, 10025L);
+        User temp2 = session.find(User.class,10026L);
+        User temp3 = session.load(User.class,10027L);
+        log.info(temp);
+       
+       
 
         session.close(); // close session; condition detached
 
