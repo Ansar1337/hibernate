@@ -11,7 +11,11 @@
         <property name="hibernate.show_sql">true</property>
 <!--            <property name="hibernate.format_sql">true</property>-->
 <!--            <property name="hibernate.highlight_sql">true</property>-->
-        <mapping class="hibernate.entity.User"/>
+        <mapping class="hibernate.entity.User"/> 
+        <mapping class="hibernate.entity.Category"/>
+        <mapping class="hibernate.entity.Priority"/>
+        <mapping class="hibernate.entity.Activity"/>
+        <mapping class="hibernate.entity.Role"/>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
