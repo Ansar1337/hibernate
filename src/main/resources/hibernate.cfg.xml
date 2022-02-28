@@ -17,6 +17,8 @@
         <mapping class="hibernate.entity.Priority"/>
         <mapping class="hibernate.entity.Activity"/>
         <mapping class="hibernate.entity.Role"/>
+        <mapping class="hibernate.entity.Stat"/>
+        <mapping class="hibernate.entity.Task"/>
 
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
