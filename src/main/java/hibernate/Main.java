@@ -83,9 +83,15 @@ public class Main {
         User temp2 = session.find(User.class,10026L);
         User temp3 = session.load(User.class,10027L);
         log.info(temp);
+        
+//          extracting information about the user and storing it in the List
+        Query query6 = session.createQuery("from User");
+        query6.setMaxResults(5);
+        List<User> users = query6.getResultList();
+        for (User u : users) {
+            log.info(u.getUsername());
+        }
        
-       
-
         session.close(); // close session; condition detached
 
         HibernateUtil.close();
