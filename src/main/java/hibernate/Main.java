@@ -91,6 +91,14 @@ public class Main {
         for (User u : users) {
             log.info(u.getUsername());
         }
+        
+//          extracting information about the categories and storing it in the List
+        Query query7 = session.createQuery("from Category");
+        query7.setMaxResults(5);
+        List<Category> categories = query7.getResultList();
+        for (Category c : categories) {
+            log.info(c);
+        }
        
         session.close(); // close session; condition detached
 
