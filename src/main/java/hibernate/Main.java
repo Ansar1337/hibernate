@@ -99,6 +99,15 @@ public class Main {
         for (Category c : categories) {
             log.info(c);
         }
+        
+//          getting session statistics and 2nd level cache
+        log.info("hit " + HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCacheHitCount());
+        log.info("miss " + HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCacheMissCount());
+        log.info("put " + HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCachePutCount());
+
+        for (String s : HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCacheRegionNames()) {
+            log.info(s);
+        }
        
         session.close(); // close session; condition detached
 
