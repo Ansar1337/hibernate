@@ -30,6 +30,18 @@ public class Main {
         session.save(user);
         session.getTransaction().commit();
         
+//         deleting user from the database
+        session.beginTransaction();
+//         one way - by using session
+        User user3 = session.get(User.class, 10025L);
+        session.delete(user3);
+//         other way - by creating User object
+        User user4 = new User();
+        user4.setId(10025L);
+        session.delete(user4);
+        
+        session.getTransaction().commit();
+        
 //         basic SQL SELECT statement using HQL         
         Query query = session.createQuery("FROM User u where u.email like :text");
         query.setParameter("text", "%a%");
