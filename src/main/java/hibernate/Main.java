@@ -120,6 +120,11 @@ public class Main {
         for (String s : HibernateUtil.getSessionFactory().getStatistics().getSecondLevelCacheRegionNames()) {
             log.info(s);
         }
+        
+//          adding Task, Task is the main object (entity) in the operation of the entire application (business processes)
+        Task task = session.get(Task.class, 50162L);
+        log.info(task);
+        log.info(task.getUser());
        
         session.close(); // close session; condition detached
 
