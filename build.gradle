@@ -16,15 +16,19 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-    // Ядро Hibernate
+    // Hibernate Core
     implementation 'org.hibernate:hibernate-core-jakarta:5.6.5.Final'
 
-    // JDBC драйвер
+    // JDBC driver
     implementation 'org.postgresql:postgresql:42.3.2'
 
-    // логирование
+    // logging
     implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
     implementation 'org.apache.logging.log4j:log4j-api:2.14.1'
+    
+    // level 2 caching
+    implementation 'org.hibernate:hibernate-jcache:5.5.6.Final' // API implementation
+    implementation 'org.ehcache:ehcache:3.9.5' // API from JSR
 
     // Lombok
     compileOnly 'org.projectlombok:lombok:1.18.22'
