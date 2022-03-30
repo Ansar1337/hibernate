@@ -36,6 +36,11 @@ public class MainDAO {
         // Checking its role(s)
         u2 = userDAO.get(20036L);
         log.info(u2.getRoles());
+        
+        // Testing other userDAO methods
+        userDAO.delete(20036L);
+        log.info(userDAO.findAll("@email.com"));
+        log.info(userDAO.findAll());
 
         HibernateUtil.close(); // close Session Factory - clears the 2nd level cache
     }
